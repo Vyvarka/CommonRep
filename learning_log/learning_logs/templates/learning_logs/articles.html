@@ -1,0 +1,28 @@
+{% extends 'learning_logs/base.html' %}
+
+{% block title %}
+    Новости
+{% endblock %}
+{% block page_header %}
+    <h3>Новости</h3>
+{% endblock page_header %}
+
+{% block content %}
+    <div class='jumbotron'>
+        {% for el in articles %}
+            <div class="border-bottom">
+                <h5>
+                    <a href="{% url 'learning_logs:article' el.id %}">{{ el.title }}</a>
+                    &raquo; <small>{{ el.date_added|date:'d M Y' }}</small>
+
+                </h5>
+            </div>
+        {% empty %}
+            <h3>Статьи еще не добавлены</h3>
+        {% endfor %}
+    </div>
+    <p>
+        <a class="btn btn-lg btn-primary" href="{% url 'learning_logs:index' %}"
+       role="button">Назад &laquo;</a>
+    </p>
+{% endblock content %}

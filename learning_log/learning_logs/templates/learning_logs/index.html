@@ -1,0 +1,31 @@
+{% extends 'learning_logs/base.html' %}
+
+{% block title %}
+Главная страница
+{% endblock %}
+
+{% block page_header %}
+    <div class='jumbotron'>
+        <h1 class="display-5">Отслеживайте свое обучение</h1>
+        <p class="lead">Создайте свой собственный журнал обучения и ведите список тем, которые вы
+        изучаете. Всякий раз, когда вы узнаете что-то новое по теме, делайте запись, резюмируя
+        то, что вы узнали.</p>
+        {% if user.is_authenticated %}
+            <a class="btn btn-lg btn-primary" href="{% url 'learning_logs:topics' %}"
+       role="button">Мои темы &raquo;</a>
+        {% else %}
+            <a class="btn btn-lg btn-primary" href="{% url 'users:register' %}"
+       role="button">Регистрация &raquo;</a>
+        {% endif %}
+    </div>
+    <div class='jumbotron'>
+        <h1 class="display-5">Узнать о последних новинках</h1>
+        <p class="lead">Современный мир не стоит на месте и постоянно предлагает новые
+            высокотехнологичные решения, которые облегчают нашу работу, отдых и быт.</p>
+        <a class="btn btn-lg btn-primary" href="{% url 'learning_logs:articles' %}"
+       role="button">Подробнее &raquo;</a>
+    </div>
+{% endblock page_header %}
+
+{% block content %}
+{% endblock content %}

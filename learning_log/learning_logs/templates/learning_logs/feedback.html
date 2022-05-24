@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Обратная связь</title>
+  <style>
+
+    body {
+        margin: 0 auto;
+        background-color: white;
+        font-family: 'Open Sans', sans-serif;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    legend {
+            font-size: 28px;
+            color: white;
+            background-color: CornflowerBlue;
+            text-align: center;
+            margin: 0;
+            padding: 15px;
+            border-radius: 15px 15px 0 0;
+            background-image: url(https://github.com/Mar9999971/for-lesson-11/raw/main/home-page.png);
+            background-repeat: no-repeat;
+            background-position: 25% 50%;
+            background-size: 30px;
+        }
+
+
+    .feedback {
+        width: 90%;
+        max-width: 550px;
+        margin: 50px auto;
+        padding: 0;
+        box-sizing: border-box;
+        background: #fff;
+        border: solid cornflowerblue 2px;
+        border-radius: 20px;
+    }
+
+    .box {
+        margin: 15px;
+    }
+
+    .box label {
+        display: inline-block;
+        margin: 15px 0 5px 25px;
+        font-weight: bold;
+        color: grey;
+        font-size: 14px;
+    }
+
+    .box input {
+        display: block;
+        margin: auto;
+        padding-left: 40px;
+        width: 90%;
+        height: 35px;
+        border: solid grey 1px;
+        border-radius: 7px;
+        box-sizing: border-box;
+    }
+
+    .box textarea {
+        display: block;
+        margin: auto;
+        width: 90%;
+        min-height: 80px;
+        max-height: 200px;
+        resize: vertical;
+        padding: 8px 0 0 40px;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    .button {
+        display: block;
+        margin: 20px auto 20px;
+        width: 140px;
+        background-color: cornflowerblue;
+        color: #fff;
+        border: solid cornflowerblue;
+        border-radius: 7px;
+        line-height: 30px;
+        font-size: 18px;
+    }
+
+    input#name {
+      background: url(https://github.com/Mar9999971/for-lesson-11/raw/main/user1.png);
+      background-repeat: no-repeat;
+      background-position: 5px 5px;
+      background-size: 25px;
+      padding-right: 20px;
+    }
+
+    input#email {
+      background: url(https://github.com/Mar9999971/for-lesson-11/raw/main/mail1.png);
+      background-repeat: no-repeat;
+      background-position: 5px 5px;
+      background-size: 25px;
+      padding-right: 20px;
+    }
+
+    input#phone {
+      background: url(https://github.com/Mar9999971/for-lesson-11/raw/main/smartphone1.png);
+      background-repeat: no-repeat;
+      background-position: 5px 5px;
+      background-size: 25px;
+      padding-right: 20px;
+    }
+
+
+    textarea {
+      background: url(https://github.com/Mar9999971/for-lesson-11/raw/main/pen1.png);
+      background-repeat: no-repeat;
+      background-position: 5px 5px;
+      background-size: 25px;
+      padding-right: 20px;
+    }
+
+
+    input:focus {
+        border-color:  cornflowerblue;
+    }
+
+ </style>
+</head>
+<body>
+<div>
+        <button id="button2" name="button2" class="button">
+        <a style="color:white;  text-decoration: none" href="{% url 'learning_logs:index' %}">На главную</a>
+        </button>
+        {% if admin %}
+            <button id="button3" name="button3" class="button">
+                <a style="color:white;  text-decoration: none" href="{% url 'learning_logs:feedbacks' %}">Отзывы</a>
+            </button>
+        {% endif %}
+</div>
+<form method="post" class="feedback">
+    {% csrf_token %}
+    <legend>Обратная связь</legend>
+    <div class="box">
+        <div>
+            {{ form.name }}
+        </div>
+    </div>
+    <div class="box">
+        <div>
+            {{ form.email }}
+        </div>
+    </div>
+    <div class="box">
+        <div>
+            {{ form.phone }}
+        </div>
+    </div>
+    <div class="box">
+        <div>
+           {{ form.comment }}
+        </div>
+    </div>
+    <div >
+        <button id="button1" name="button1" class="button">Отправить</button>
+    </div>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+{% load bootstrap4 %}
+
+<!doctype html>
+<html lang="ru">
+ <head>
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1,
+         shrink-to-fit=no">
+     <title>{% block title %}{% endblock %}</title>
+
+     {% bootstrap_css %}
+     {% bootstrap_javascript jquery='full' %}
+
+ </head>
+ <body>
+    <nav class="navbar navbar-expand-md fixed-top navbar-dark position-fix bg-dark mb-4 border">
+        <a class="navbar-brand" href="{% url 'learning_logs:index' %}">Learning Log &reg;
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarCollapse" aria-controls="navbarCollapse"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'learning_logs:topics' %}">Темы</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'learning_logs:articles' %}">Новости</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'learning_logs:feedback' %}">О проекте</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                  <li class="nav-item">
+                      <span class="navbar-text">Привет, {{ user.username }}.</span>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="{% url 'users:logout' %}">Выход</a>
+                  </li>
+                {% else %}
+                  <li class="nav-item">
+                      <a class="nav-link" href="{% url 'users:register' %}">Регистрация</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="{% url 'users:login' %}">Вход</a>
+                  </li>
+                {% endif %}
+            </ul>
+        </div>
+  </nav>
+  <main role="main" class="container" style="margin-top: 70px">
+      <div class="pb-2 mb-2 border-bottom">
+          {% block page_header %}{% endblock page_header %}
+      </div>
+      <div>
+          {% block content %}{% endblock content %}
+      </div>
+  </main>
+ </body>
+</html>

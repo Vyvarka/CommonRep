@@ -1,0 +1,27 @@
+{% extends 'learning_logs/base.html' %}
+
+{% block title %}
+    Темы
+{% endblock %}
+{% block page_header %}
+    <h1>Темы</h1>
+{% endblock page_header %}
+
+{% block content %}
+    <p>
+        <a class="btn btn-lg btn-primary" href="{% url 'learning_logs:new_topic' %}"
+       role="button">Создать тему &raquo;</a>
+    </p>
+    <div class='jumbotron'>
+        {% for el in topics %}
+        <table class="pb-2 mb-1 ml-3 border-bottom">
+            <tr>
+                <td class="font-weight: bold"><a href="{% url 'learning_logs:topic' el.id %}"> {{ el.text }}</a></td>
+                <td style="text-align: right">  &raquo; добавлена {{ el.date_added|date:'d M Y' }}</td>
+            </tr>
+        </table>
+        {% empty %}
+        <h3>Темы еще не добавлены. Вы можете добавить новую.</h3>
+        {% endfor %}
+    </div>
+{% endblock content %}
