@@ -16,9 +16,7 @@ lst_articles = [{'title': 'Название статьи 1', 'text': 'Содер
 
 
 def load_articles(owner=1):
-    # title
-    # text
-    # owner
+    """Загружает статьи на сайт через Django-shell"""    
     author = User.objects.get(id=owner)
     for el in lst_articles:
         new_article = models.Article(title=el['title'], text=el['text'], owner=author)

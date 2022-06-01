@@ -91,20 +91,21 @@ def edit_entry(request, entry_id):
 
 
 def articles(request):
-    """Страница со всеми созданными темами данного пользователя"""
+    """Страница со всеми новостями"""
     articles = models.Article.objects.order_by('-date_added')
     context = {'articles': articles}
     return render(request, 'learning_logs/articles.html', context)
 
 
 def article(request, article_id):
-    """Показываем содержание статьи"""
+    """Показываем содержание новостной статьи"""
     article = models.Article.objects.get(id=article_id)
     context = {'article': article}
     return render(request, 'learning_logs/article.html', context)
 
 
 def feedback(request):
+    """Страница обратной связи"""
     error = ''
     admin = False
     if request.method != 'POST':
@@ -122,7 +123,8 @@ def feedback(request):
 
 @login_required
 def feedbacks(request):
-    feedbacks = feedbacks = models.Feedback.objects.order_by('-date_added')
+    """Список отзывов пользователей. Доступна только для администратора"""
+    feedbacks = models.Feedback.objects.order_by('-date_added')
     if request.user.id != 1:
         raise Http404
     context = {'feedbacks': feedbacks}
